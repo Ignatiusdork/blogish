@@ -25,10 +25,10 @@ Route::get('/', function () {
 });
 
 // using wildcards to navigate to different pages
-Route::get('posts/{post}', function ($slug) {
+Route::get('posts/{post:slug}', function (Post $post) {
 
     //find a post by its slug and pass it to a view called "post"
-    $post = Post::findOrFail($slug);
+    //$post = Post::findOrFail($post);
 
     return view('post', [
         'post' => $post
