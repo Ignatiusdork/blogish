@@ -22,7 +22,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', function () {
 
     return view('posts', [
-        'posts' => Post::latest()->get()
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
