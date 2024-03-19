@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -19,24 +20,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
+// using wildcards to navigate to different pages eg 'posts/{post:slug}'
 
-    return view('posts', [
-        'posts' => Post::latest()->get(),
-        'categories' => Category::all()
-    ]);
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-// using wildcards to navigate to different pages
-Route::get('posts/{post:slug}', function (Post $post) {
-
-    //find a post by its slug and pass it to a view called "post"
-    //$post = Post::findOrFail($post);
-
-    return view('post', [
-        'post' => $post
-    ]);
-});
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
@@ -44,7 +32,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
         'currentCategory' => $category,
         'categories' => Category::all()
     ]);
-});
+})->name('category');
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
