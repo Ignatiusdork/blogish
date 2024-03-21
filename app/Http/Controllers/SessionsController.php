@@ -13,6 +13,7 @@ class SessionsController extends Controller
     }
 
     public function store() {
+
         // validate the result
         $attributes = request()->validate([
             'email' => 'required|email',
@@ -21,17 +22,16 @@ class SessionsController extends Controller
 
         //attempt to authenticate and log in the user
         // based on the provided credentials
-        if (auth()->attempt($attributes)) {
-            session()->regenerate();
+        if (! auth()->attempt($attributes)) {
 
-            // redirect with a success flash message
-            return redirect('/')->with('success', 'Welcome Back!');
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentails counld not be verified'
+            ]);
         }
 
-        //auth failed
-        throw ValidationException::withMessages([
-            'email' => 'Your provided credentails counld not be verified'
-        ]);
+        session()->regenerate();
+
+        return redirect('/')->with('success', 'Welcome Back!');
     }
 
     public function destroy() {
