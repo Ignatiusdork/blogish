@@ -13,6 +13,7 @@
             </p>
         </header>
         <p>
+        
             {{ $comment->body }}
         </p>
     </div>
