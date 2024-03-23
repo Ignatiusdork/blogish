@@ -9,8 +9,6 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
     // eager loading, n+1 problem solved by using this method. It will automatically load the category
     protected $with = ['category', 'author'];
 

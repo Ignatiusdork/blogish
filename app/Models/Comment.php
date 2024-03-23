@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
     // a comment is associated with a post and an author
     public function post() {
         return $this->belongsTo(Post::class);
