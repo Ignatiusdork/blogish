@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class PostCommentsController extends Controller
 {
     public function store(Post $post) {
+
         // validate the request
         request()->validate([
             'body' => 'required'

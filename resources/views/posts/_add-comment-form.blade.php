@@ -1,5 +1,6 @@
 @auth
 <x-panel>
+
     <form method="POST" action="/posts/{{ $post->slug }}/comments" >
 
         @csrf
@@ -21,6 +22,7 @@
             <x-submit-button>Post</x-submit-button>
         </div>
     </form>
+
 </x-panel>
 
 @else
