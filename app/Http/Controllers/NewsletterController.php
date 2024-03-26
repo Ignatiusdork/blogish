@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 
 class NewsletterController extends Controller
 {
+        //invoke the news letter not to use a key
     public function __invoke(Newsletter $newsletter) {
 
         request()->validate(['email' => 'required|email']);
@@ -23,6 +24,5 @@ class NewsletterController extends Controller
             ]);
         }
         return redirect('/')->with('success', 'You are now signed up for our newsletter!');
-
     }
 }
