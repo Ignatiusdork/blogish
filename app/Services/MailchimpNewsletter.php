@@ -20,5 +20,3 @@ class MailchimpNewsletter implements Newsletter
         ]);
     }
 }
-
-
